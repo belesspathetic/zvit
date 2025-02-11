@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Звіт за період з 1 січня 2024 року по 31 грудня 2024 року</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .report-section {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+
+        .highlight {
+            background-color: #f2f2f2;
+        }
+
+        .chart-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .note {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .explanation {
+            max-width: 800px;
+            margin: 20px auto;
+            font-size: 16px;
+            color: #333;
+            background-color: #ffffff;
+            padding: 15px;
+            border-left: 4px solid #2c3e50;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Звіт за період з 1 січня 2024 року по 31 грудня 2024 року</h1>
+    <div class="report-section">
+        <h2>Статистика звернень</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Тип звернення</th>
+                    <th>TP-Link</th>
+                    <th>Mercusys</th>
+                    <th>Усього</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Віртуальна АТС</td>
+                    <td>932</td>
+                    <td>54</td>
+                    <td>986</td>
+                </tr>
+                <tr class="highlight">
+                    <td>Get Call</td>
+                    <td>1325</td>
+                    <td>108</td>
+                    <td>1433</td>
+                </tr>
+                <tr>
+                    <td>Телефонні звернення</td>
+                    <td>2257</td>
+                    <td>162</td>
+                    <td>2419</td>
+                </tr>
+                <tr class="highlight">
+                    <td>Усі звернення</td>
+                    <td>3271</td>
+                    <td>206</td>
+                    <td>3477</td>
+                </tr>
+                <tr>
+                    <td>Звернення (чати + пошта)</td>
+                    <td>1014</td>
+                    <td>44</td>
+                    <td>1058</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="explanation">
+        <p>Загалом звернення "чати + пошта" складають близько 30% від усіх звернень.</p>
+    </div>
+    
+    <div class="chart-container">
+        <h2>Діаграма звернень</h2>
+        <canvas id="requestsChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('requestsChart').getContext('2d');
+        const requestsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Віртуальна АТС', 'Get Call', 'Телефонні звернення', 'Усі звернення', 'Чати + Пошта'],
+                datasets: [
+                    {
+                        label: 'TP-Link',
+                        data: [932, 1325, 2257, 3271, 1014],
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)'
+                    },
+                    {
+                        label: 'Mercusys',
+                        data: [54, 108, 162, 206, 44],
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
